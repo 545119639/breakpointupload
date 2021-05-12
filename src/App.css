@@ -1,0 +1,23 @@
+@import "~antd/dist/antd.css";
+.App {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+.App button {
+  margin: 0 5px;
+}
+.App .proDiv {
+  margin-bottom: 10px;
+}
+
+.App .proDiv .ant-progress-line{
+  width: 400px;
+  display: block;
+}
+
+.App .proDiv .divSpan {
+  float: left;
+  margin-top: 5px;
+  width: 400px;
+}
+
