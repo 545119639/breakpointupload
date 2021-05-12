@@ -14,7 +14,6 @@ app.use(
 );
 let join = require("path").join;
 
-/*-API-*/
 const multiparty = require("multiparty"),
   uploadDir = `${__dirname}/upload`;
 

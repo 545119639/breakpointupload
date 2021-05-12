@@ -18,6 +18,7 @@ class App extends React.Component {
     computedFileSize: false,
   };
 
+  //创建切片
   createChunkFile = async (file) => {
     if (!file) return;
 
@@ -53,6 +54,8 @@ class App extends React.Component {
       }
     );
   };
+
+  //根据切片数创造切片数个请求
   uploadFn = async (list) => {
     let p = parseInt(Math.ceil(100 / this.state.partList.length));
     //根据切片数创造切片数个请求
@@ -103,6 +106,8 @@ class App extends React.Component {
       }
     );
   };
+
+  //最后一个切片上传完成，合并切片
   uploadComplete = async () => {
     let result = await axios.get("/merge", {
       params: {
@@ -114,6 +119,8 @@ class App extends React.Component {
       message.success("上传成功");
     }
   };
+
+  //上传单个切片
   uploadSend = async (c, requestList) => {
     // 已经中断则不再上传
     if (this.state.abort) return;
@@ -131,6 +138,7 @@ class App extends React.Component {
     this.uploadSend(c, requestList);
   };
 
+  //检查当前文件是否曾经上传
   getLoadingFiles = async (hash) => {
     let result = await axios.get("/loadingUpload", {
       params: {
@@ -155,12 +163,14 @@ class App extends React.Component {
     }
   };
 
+  //监听input标签函数
   fileChage = () => {
     this.setState({
       total: 0,
     });
   };
 
+  //点击上传函数
   uploadFile = () => {
     this.setState({
       computedFileSize: true,
@@ -168,6 +178,7 @@ class App extends React.Component {
     this.createChunkFile(this.inputFile.files[0]);
   };
 
+  //点击暂停或者继续的函数
   onClick = () => {
     if (!this.inputFile.files[0]) return;
     if (this.state.loading) {
